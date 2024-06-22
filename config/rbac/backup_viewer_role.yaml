@@ -1,0 +1,27 @@
+# permissions for end users to view backups.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: backup-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: tergum-operator
+    app.kubernetes.io/part-of: tergum-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: backup-viewer-role
+rules:
+- apiGroups:
+  - tergum.sikalabs.com
+  resources:
+  - backups
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - tergum.sikalabs.com
+  resources:
+  - backups/status
+  verbs:
+  - get
